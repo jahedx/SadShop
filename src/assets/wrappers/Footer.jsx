@@ -8,6 +8,7 @@ const Wrapper = styled.footer`
   width: 100vw;
   background: var(--background-secondary-color);
   padding-bottom: 1rem;
+  overflow: hidden;
 
   .footer-center {
     margin-top: 2rem;

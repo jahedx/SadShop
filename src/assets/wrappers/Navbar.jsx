@@ -149,6 +149,7 @@ const Wrapper = styled.nav`
     color: var(--primary-500);
   }
   .category li:hover .dropdown {
+    z-index: 2;
     display: block;
   }
 

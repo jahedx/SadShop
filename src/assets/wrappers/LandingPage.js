@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const Wrapper = styled.section`
+const 0Wrapper = styled.section`
   nav {
     width: var(--fluid-width);
     max-width: var(--max-width);
@@ -11,10 +11,25 @@ const Wrapper = styled.section`
   }
   .page {
     min-height: calc(100vh - var(--nav-height));
-    display: grid;
+    width: var(--fluid-width);
+    display: flex;
     align-items: center;
-    margin-top: -3rem;
+    margin: 0 auto;
   }
+
+  .slider {
+    border-radius: var(--border-radius);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    display: block;
+    /* max-width: 80vw; */
+    object-fit: cover;
+  }
+
   h1 {
     font-weight: 700;
     span {
@@ -28,23 +43,18 @@ const Wrapper = styled.section`
     margin-bottom: 1.5rem;
     max-width: 35em;
   }
-  .register-link {
-    margin-right: 1rem;
+
+  .cards-container{
+    width: 80vw;
   }
-  .main-img {
-    display: none;
-  }
-  .btn {
-    padding: 0.75rem 1rem;
-  }
+
+
   @media (min-width: 992px) {
     .page {
       grid-template-columns: 1fr 400px;
       column-gap: 3rem;
     }
-    .main-img {
-      display: block;
-    }
+
   }
 `;
 export default Wrapper;
