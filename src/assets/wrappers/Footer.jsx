@@ -16,6 +16,9 @@ const Wrapper = styled.footer`
   }
 
   .footer-contact {
+    span {
+      display: none;
+    }
     text-align: center;
   }
   .footer-contact p {
@@ -26,11 +29,12 @@ const Wrapper = styled.footer`
   }
   .icon {
     color: var(--primary-500);
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 0.5rem;
     transition: var(--transition);
   }
   .icons {
+    padding: 0.5rem;
     border-radius: var(--border-radius);
 
     background: var(--grey-100);
@@ -54,7 +58,25 @@ const Wrapper = styled.footer`
     order: 2;
   }
   .copyright h4 {
+    font-size: 1rem;
     align-self: flex-end;
+  }
+  @media (min-width: 992px) {
+    .footer-contact {
+      display: flex;
+      justify-content: end;
+      span {
+        display: block;
+        align-self: center;
+        color: var(--grey-400);
+      }
+    }
+    .social p {
+      text-align: right;
+    }
+    .slider-container {
+      width: 90vw;
+    }
   }
 `;
 

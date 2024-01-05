@@ -2,18 +2,20 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   .card {
-    max-width: 16rem;
+    min-height: 24rem;
+    width: 16rem;
     background: var(--white);
     box-shadow: var(--shadow-1);
     border-radius: var(--border-radius);
     text-align: right;
     padding: 1rem;
     transition: var(--transition);
+    margin: 1rem;
   }
   .card:hover {
     box-shadow: var(--shadow-4);
     cursor: pointer;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
   }
   .selling-price {
     margin-top: 0.5rem;
@@ -27,6 +29,10 @@ const Wrapper = styled.section`
       font-weight: 500;
     }
   }
+  .not-avalable {
+    text-align: center;
+    color: var(--grey-500);
+  }
   .off-percent {
     color: var(--white);
     margin-left: auto;
@@ -37,6 +43,14 @@ const Wrapper = styled.section`
     font-weight: 600;
     background: red;
     border-radius: 25px;
+  }
+  .real-price {
+    h3 {
+      margin-top: 0.35rem;
+      color: var(--grey-500);
+      font-size: 0.75rem;
+      text-decoration: line-through;
+    }
   }
 
   p {

@@ -25,6 +25,7 @@ html {
   --primary-800: #0a6c74;
   --primary-900: #044e54;
 
+
   /* grey */
   --grey-50: #f8fafc;
   --grey-100: #f1f5f9;
@@ -41,6 +42,7 @@ html {
   --white: #fff;
   --red-light: #f8d7da;
   --red-dark: #842029;
+  --red-light: #ef394e;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
 
@@ -86,9 +88,7 @@ html {
 body {
   background: var(--background-color);
   color: var(--text-color);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 400;
+    font-family: "IRANYekan", sans-serif;
   line-height: 1;
 }
 p {
@@ -103,9 +103,9 @@ h5 {
   font-weight: 400;
   line-height: 1;
   text-transform: capitalize;
-  letter-spacing: var(--letter-spacing);
+  /* letter-spacing: var(--letter-spacing); */
 }
-
+/* 
 h1 {
   font-size: clamp(2rem, 5vw, 5rem); /* Large heading */
 }
@@ -118,13 +118,14 @@ h3 {
   font-size: clamp(1.25rem, 2.5vw, 2.5rem); /* Small heading */
 }
 
-/* h4 {
+h4 {
   font-size: clamp(1rem, 2vw, 2rem); /* Extra small heading */
-} */
+}
 
 h5 {
   font-size: clamp(0.875rem, 1.5vw, 1.5rem); /* Tiny heading */
 }
+ */
 
 /* BIGGER FONTS */
 /* h1 {

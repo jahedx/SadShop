@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer-center">
           <div className="footer-contact">
             <p>شماره تماس: 55681964-021</p>
-
+            <span>|</span>
             <p>هر روز هفته، همه ساعات، پاسخگوی شماییم</p>
           </div>
           <div className="social">
