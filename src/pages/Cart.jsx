@@ -1,13 +1,13 @@
 import SingleItem from "../components/CartSingleItem.jsx";
 import Wrapper from "../assets/wrappers/Cart.js";
-import { cart } from "../data/Data";
+import { useGlobalContext } from "../context.jsx";
 const Cart = () => {
-  console.log(cart);
+  const { defaultCart, setDefaultCart } = useGlobalContext();
   return (
     <Wrapper>
       <div className="section-center">
         <section className="product-list">
-          {cart.map((product) => {
+          {defaultCart.map((product) => {
             return <SingleItem {...product} key={product.id} />;
           })}
           <div className="single-product"></div>

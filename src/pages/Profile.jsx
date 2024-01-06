@@ -1,6 +1,5 @@
 import Wrapper from "../assets/wrappers/Profile.js";
 import MainAvatar from "../components/MainAvatar.jsx";
-import { user } from "../data/Data";
 import { FaEdit, FaShoppingCart, FaRegHeart, FaUser } from "react-icons/fa";
 import {
   MdSpaceDashboard,
@@ -10,11 +9,11 @@ import {
 } from "react-icons/md";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context";
 
 function Profile() {
-  const [user1, setUser1] = useState(user);
+  const { defaultUser, setDefaultUser } = useGlobalContext();
   const [page, setPage] = useState("accountInfo");
-  // console.log(user);
   return (
     <Wrapper>
       <div className="section-center">
@@ -28,42 +27,44 @@ function Profile() {
                 <label htmlFor="name" className="info-label">
                   نام
                 </label>
-                <div className="user-information">{user.name}</div>
+                <div className="user-information">{defaultUser.name}</div>
                 <br />
               </div>
               <div className="user-info">
                 <label htmlFor="lastName" className="info-label">
                   نام خانوادگی
                 </label>
-                <div className="user-information">{user.lastName}</div>
+                <div className="user-information">{defaultUser.lastName}</div>
                 <br />
               </div>
               <div className="user-info">
                 <label htmlFor="bDate" className="info-label">
                   تاریخ تولد
                 </label>
-                <div className="user-information">{user.bDate}</div>
+                <div className="user-information">{defaultUser.bDate}</div>
                 <br />
               </div>
               <div className="user-info">
                 <label htmlFor="phone" className="info-label">
                   شماره تماس
                 </label>
-                <div className="user-information">{user.phoneNumber}</div>
+                <div className="user-information">
+                  {defaultUser.phoneNumber}
+                </div>
                 <br />
               </div>
               <div className="user-info">
                 <label htmlFor="email" className="info-label">
                   ایمیل
                 </label>
-                <div className="user-information">{user.email}</div>
+                <div className="user-information">{defaultUser.email}</div>
               </div>
 
               <div className="user-info">
                 <label htmlFor="nationalID" className="info-label">
                   کد ملی
                 </label>
-                <div className="user-information">{user.nationalID}</div>
+                <div className="user-information">{defaultUser.nationalID}</div>
               </div>
             </div>
             <div className="edit-btn">
@@ -173,7 +174,7 @@ function Profile() {
             </div>
             <button
               onClick={() => {
-                setUser1(null);
+                setDefaultUser(null);
               }}
             >
               <div className="dashboard-title">

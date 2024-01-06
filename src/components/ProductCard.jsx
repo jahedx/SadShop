@@ -1,4 +1,6 @@
 import Wrapper from "../assets/wrappers/ProductCard.js";
+import ToomanIcon from "./ToomanIcon";
+
 
 /* eslint-disable react/prop-types */
 const ProductCard = (props) => {
@@ -18,8 +20,8 @@ const ProductCard = (props) => {
               <br />
             )}
             <div className="selling-price">
-              <span>تومان</span>
               <h3>{sellingPrice}</h3>
+              <ToomanIcon />
             </div>
             <div className="real-price">
               <h3>{realPrice}</h3>

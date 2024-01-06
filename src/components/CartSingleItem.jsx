@@ -29,7 +29,15 @@ const CartSingleItem = (props) => {
             </h2>
           </div>
           <div className="change-count">
-            <button className=" change-btn">-</button>
+            <button
+              className=" change-btn"
+              onClick={() => {
+                setCartList(...cartList);
+                console.log(cartList);
+              }}
+            >
+              -
+            </button>
             <h2>{count}</h2>
             <button className=" change-btn">+</button>
           </div>

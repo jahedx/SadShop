@@ -18,10 +18,15 @@ const Wrapper = styled.section`
     margin-top: 0.5rem;
   }
   .selling-price {
+    img {
+      width: 1.3rem;
+    }
     margin-top: 0.5rem;
     text-align: left;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    flex-direction: row-reverse;
+    gap: 1rem;
     h3 {
       align-self: self-end;
     }
@@ -37,7 +42,9 @@ const Wrapper = styled.section`
     color: var(--white);
     margin-left: auto;
     text-align: center;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 50px;
     height: 20px;
     font-weight: 600;

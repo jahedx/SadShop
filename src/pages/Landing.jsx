@@ -8,11 +8,12 @@ import {
   HeroBanner,
 } from "../components";
 
-import { data } from "./../data/Data";
-const cards = data;
-SliderCard.cards = cards;
+import { useGlobalContext } from "../context.jsx";
 
 const LandingPage = () => {
+  const { defaultData } = useGlobalContext();
+  const cards = defaultData;
+  SliderCard.cards = cards;
   return (
     <Wrapper>
       <div className="page">
