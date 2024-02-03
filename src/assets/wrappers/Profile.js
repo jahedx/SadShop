@@ -108,6 +108,26 @@ const Wrapper = styled.section`
       color: var(--primary-500);
     }
   }
+  .section {
+    margin-right: 5rem;
+    border: 1px solid var(--grey-300);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    min-height: 30rem;
+    min-width: 40%;
+  }
+  .addresses {
+    margin: 2rem;
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    h4 {
+      color: var(--grey-600);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export default Wrapper;

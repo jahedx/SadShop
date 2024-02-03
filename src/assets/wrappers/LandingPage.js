@@ -22,6 +22,7 @@ const Wrapper = styled.section`
   }
 
   .slider {
+    z-index: -1;
     margin: 2rem 0;
     display: inline-block;
     border-radius: var(--border-radius);

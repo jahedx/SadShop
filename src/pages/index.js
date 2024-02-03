@@ -9,3 +9,4 @@ export { default as HomeLayout } from "./HomeLayout";
 export { default as Error } from "./Error";
 export { default as Profile } from "./Profile";
 export { default as Register } from "./Register";
+export { default as Test } from "./Test";

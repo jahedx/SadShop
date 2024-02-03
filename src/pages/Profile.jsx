@@ -14,91 +14,111 @@ import { useGlobalContext } from "../context";
 function Profile() {
   const { defaultUser, setDefaultUser } = useGlobalContext();
   const [page, setPage] = useState("accountInfo");
+
+  const addresses = (props) => {
+    const { address, city, postCode, phone, name } = props;
+    return (
+      <section className="addresses" key={address}>
+        <h2>{address}</h2>
+        <h4>{city}</h4>
+        <h4>{postCode}</h4>
+        <h4>{phone}</h4>
+        <h4>{name}</h4>
+        <div className="edit-btn">
+          <Link className="edit-icon">
+            <FaEdit />
+          </Link>
+        </div>
+      </section>
+    );
+  };
+  console.log(defaultUser);
   return (
     <Wrapper>
       <div className="section-center">
-        <div className="private-info">
-          <h2>اطلاعات حساب کاربری</h2>
+        {page === "accountInfo" && (
+          <div className="private-info">
+            <h2>اطلاعات حساب کاربری</h2>
 
-          <div className="information">
-            <h2>اطلاعات شخصی</h2>
-            <div className="info-values">
-              <div className="user-info">
-                <label htmlFor="name" className="info-label">
-                  نام
-                </label>
-                <div className="user-information">{defaultUser.name}</div>
-                <br />
-              </div>
-              <div className="user-info">
-                <label htmlFor="lastName" className="info-label">
-                  نام خانوادگی
-                </label>
-                <div className="user-information">{defaultUser.lastName}</div>
-                <br />
-              </div>
-              <div className="user-info">
-                <label htmlFor="bDate" className="info-label">
-                  تاریخ تولد
-                </label>
-                <div className="user-information">{defaultUser.bDate}</div>
-                <br />
-              </div>
-              <div className="user-info">
-                <label htmlFor="phone" className="info-label">
-                  شماره تماس
-                </label>
-                <div className="user-information">
-                  {defaultUser.phoneNumber}
+            <div className="information">
+              <h2>اطلاعات شخصی</h2>
+              <div className="info-values">
+                <div className="user-info">
+                  <label htmlFor="name" className="info-label">
+                    نام
+                  </label>
+                  <div className="user-information">{defaultUser.name}</div>
+                  <br />
                 </div>
-                <br />
-              </div>
-              <div className="user-info">
-                <label htmlFor="email" className="info-label">
-                  ایمیل
-                </label>
-                <div className="user-information">{defaultUser.email}</div>
-              </div>
+                <div className="user-info">
+                  <label htmlFor="lastName" className="info-label">
+                    نام خانوادگی
+                  </label>
+                  <div className="user-information">{defaultUser.lastName}</div>
+                  <br />
+                </div>
+                <div className="user-info">
+                  <label htmlFor="bDate" className="info-label">
+                    تاریخ تولد
+                  </label>
+                  <div className="user-information">{defaultUser.bDate}</div>
+                  <br />
+                </div>
+                <div className="user-info">
+                  <label htmlFor="phone" className="info-label">
+                    شماره تماس
+                  </label>
+                  <div className="user-information">
+                    {defaultUser.phoneNumber}
+                  </div>
+                  <br />
+                </div>
+                <div className="user-info">
+                  <label htmlFor="email" className="info-label">
+                    ایمیل
+                  </label>
+                  <div className="user-information">{defaultUser.email}</div>
+                </div>
 
-              <div className="user-info">
-                <label htmlFor="nationalID" className="info-label">
-                  کد ملی
-                </label>
-                <div className="user-information">{defaultUser.nationalID}</div>
+                <div className="user-info">
+                  <label htmlFor="nationalID" className="info-label">
+                    کد ملی
+                  </label>
+                  <div className="user-information">
+                    {defaultUser.nationalID}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="edit-btn">
-              <Link className="edit-icon">
-                <FaEdit />
-              </Link>
+              <div className="edit-btn">
+                <Link className="edit-icon">
+                  <FaEdit />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {page !== "accountInfo" && (
+          <div className="section">
+            {page === "addresses" &&
+              defaultUser.addresses.map((address) => {
+                return addresses(address);
+              })}
+          </div>
+        )}
+
         <div className="dashboard">
           <div className="">
             <MainAvatar />
           </div>
           <div>
-            <button
-              onClick={() => {
-                setPage("dashboard");
-              }}
-            >
-              <div
-                className={
-                  page === "dashboard"
-                    ? "selected-page dashboard-title"
-                    : "dashboard-title"
-                }
-              >
-                <h4 className="dash-title">
-                  داشبورد
-                  <span>
-                    <MdSpaceDashboard />
-                  </span>
-                </h4>
-              </div>
-            </button>
+            <div className="dashboard-title">
+              <h4 className="dash-title">
+                داشبورد
+                <span>
+                  <MdSpaceDashboard />
+                </span>
+              </h4>
+            </div>
             <div className="additional-info">
               <button
                 onClick={() => {

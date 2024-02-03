@@ -3,12 +3,14 @@ import ToomanIcon from "./ToomanIcon";
 import ToomanRedIcon from "./ToomanRedIcon.jsx";
 import { useGlobalContext } from "../context.jsx";
 import { useState } from "react";
-import Product from "./../pages/Product";
 
 const CartSingleItem = (props) => {
   const { defaultCart, setDefaultCart } = useGlobalContext();
   // var { id, img, count, price, discount, title, color, guarantee } = props;
   const [product, setProduct] = useState(props);
+  const [count, setCount] = useState(props.count);
+  const [cost, setCost] = useState(props.cost);
+  // console.log(count);
 
   return (
     <Wrapper>
@@ -35,23 +37,46 @@ const CartSingleItem = (props) => {
               <span>
                 <ToomanIcon />
               </span>
-              {product.price}
+              {cost}
             </h2>
           </div>
           <div className="change-count">
             <button
               className=" change-btn"
               onClick={() => {
-                const temp = { ...defaultCart };
+                var temp = { ...defaultCart };
                 temp[product.id].count = temp[product.id].count - 1;
+                setCount(count - 1);
+                setCost(cost - cost / count);
+                temp[product.id].cost = (cost / count) * (count - 1);
+                temp[product.id].discount =
+                  (product.discount / count) * (count - 1);
+                console.log(temp);
                 setProduct(temp[product.id]);
-                console.log(product);
+                // setDefaultCart(product);
+                // console.log(defaultCart);
               }}
             >
               -
             </button>
-            <h2>{product.count}</h2>
-            <button className=" change-btn">+</button>
+            <h2>{count}</h2>
+            <button
+              className=" change-btn"
+              onClick={() => {
+                var temp = { ...defaultCart };
+                temp[product.id].count = temp[product.id].count + 1;
+                setCost(product.price * (count + 1));
+                temp[product.id].cost = (cost / count) * (count + 1);
+                temp[product.id].discount =
+                  (product.discount / count) * (count + 1);
+                console.log(temp);
+                setCount(count + 1);
+                setProduct(temp[product.id]);
+                // console.log(count);
+              }}
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
