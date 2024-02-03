@@ -1,44 +1,56 @@
 import Wrapper from "../assets/wrappers/CartSingleItem.js";
 import ToomanIcon from "./ToomanIcon";
 import ToomanRedIcon from "./ToomanRedIcon.jsx";
-ToomanRedIcon;
+import { useGlobalContext } from "../context.jsx";
+import { useState } from "react";
+import Product from "./../pages/Product";
+
 const CartSingleItem = (props) => {
-  const { id, img, count, price, discount, title, color, guarantee } = props;
+  const { defaultCart, setDefaultCart } = useGlobalContext();
+  // var { id, img, count, price, discount, title, color, guarantee } = props;
+  const [product, setProduct] = useState(props);
+
   return (
     <Wrapper>
       <div className="container">
-        <p>{count} کالا</p>
+        <p>{product.count} کالا</p>
         <div className="main-description">
-          <img src={img} alt={title} className="product-image" />
+          <img
+            src={product.img}
+            alt={product.title}
+            className="product-image"
+          />
           <div className="main-details">
-            <h3>{title}</h3>
-            <p>{color}</p>
+            <h3>{product.title}</h3>
+            <p>{product.color}</p>
             <br />
-            <p>{guarantee}</p>
+            <p>{product.guarantee}</p>
           </div>
         </div>
         <div className="details">
           <div className="pricing">
             <ToomanRedIcon />
-            <span> {discount}</span>
+            <span> {product.discount}</span>
             <h2>
               <span>
                 <ToomanIcon />
               </span>
-              {price}
+              {product.price}
             </h2>
           </div>
           <div className="change-count">
             <button
               className=" change-btn"
               onClick={() => {
-                setCartList(...cartList);
-                console.log(cartList);
+                const temp = { ...defaultCart };
+                temp[product.id].count = temp[product.id].count - 1;
+                setProduct(temp[product.id]);
+                console.log(product);
               }}
             >
               -
             </button>
-            <h2>{count}</h2>
+            <h2>{product.count}</h2>
             <button className=" change-btn">+</button>
           </div>
         </div>
