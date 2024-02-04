@@ -8,10 +8,12 @@ import {
   MdLogout,
 } from "react-icons/md";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 function Profile() {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const { defaultUser, setDefaultUser } = useGlobalContext();
   const [page, setPage] = useState("accountInfo");
 
@@ -32,7 +34,6 @@ function Profile() {
       </section>
     );
   };
-  console.log(defaultUser);
   return (
     <Wrapper>
       <div className="section-center">
@@ -195,6 +196,8 @@ function Profile() {
             <button
               onClick={() => {
                 setDefaultUser(null);
+                localStorage.removeItem("user");
+                navigate("/login");
               }}
             >
               <div className="dashboard-title">

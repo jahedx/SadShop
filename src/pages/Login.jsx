@@ -1,57 +1,55 @@
 import { Link, useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
 import Logo from "../components/Logo.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { post } from "../modules/axiosService.js";
 
 const Login = () => {
-  const history = useNavigate(); // Import useHistory from react-router-dom
-  const [username, setUsername] = useState("");
+  const navigate = useNavigate(); // Import useHistory from react-router-dom
+  const [login, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function login(e) {
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/profile");
+    }
+  });
+
+  async function loginHandler(e) {
     e.preventDefault(); // Prevent the default form submission behavior
 
-    console.log(username, password);
-    let item = { username, password };
-
     try {
-      let result = await fetch(
-        "http://192.168.200.165:8001/api/authenticate/user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(item),
-        }
-      );
+      const handleLogin = await post("/login", {
+        login: login,
+        password: password,
+      });
+      console.log("Get response: ", handleLogin);
 
-      if (!result.ok) {
-        throw new Error(`HTTP error! Status: ${result.status}`);
-      }
+      localStorage.setItem("user", JSON.stringify(handleLogin));
+      navigate("/profile");
 
-      result = await result.json();
-      localStorage.setItem("user.info", JSON.stringify(result));
-      history.push("./profile");
+      // Additional logic (e.g., storing data in localStorage) can go here
     } catch (error) {
-      console.error("Login failed", error.message);
-      // Handle login error (e.g., show a message to the user)
+      console.error("Error while fetching data", error);
     }
+
+    // console.log(login);
   }
 
   return (
     <Wrapper>
-      <form className="form" onSubmit={login}>
+      <form className="form" onSubmit={loginHandler}>
         <Logo />
         <h4>Login</h4>
         <input
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
           type="text"
           id="userName"
           name="userName"
           className="form-input"
-          defaultValue={"ali" || ""}
+          defaultValue=""
           required
         />
         <input
