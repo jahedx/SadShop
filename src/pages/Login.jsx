@@ -6,7 +6,7 @@ import { post } from "../modules/axiosService.js";
 
 const Login = () => {
   const navigate = useNavigate(); // Import useHistory from react-router-dom
-  const [login, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -19,8 +19,8 @@ const Login = () => {
     e.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const handleLogin = await post("/login", {
-        login: login,
+      const handleLogin = await post("api/login", {
+        email: username,
         password: password,
       });
       console.log("Get response: ", handleLogin);

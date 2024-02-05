@@ -9,8 +9,19 @@ import {
 } from "../components";
 
 import { useGlobalContext } from "../context.jsx";
+import { useEffect } from "react";
+import { get } from "../modules/axiosService.js";
 
 const LandingPage = () => {
+  useEffect(() => async () => {
+    try {
+      const list1 = await get("/api/unknown");
+      console.log("Get response: ", list1);
+    } catch (error) {
+      console.error("Error while fetching data", error);
+    }
+  });
+
   const { defaultData } = useGlobalContext();
   const cards = defaultData;
   SliderCard.cards = cards;

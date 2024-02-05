@@ -34,6 +34,7 @@ const Wrapper = styled.section`
 
   .btn {
     margin-top: 1rem;
+    padding: 0.75rem;
   }
 
   .member-btn {
@@ -41,6 +42,10 @@ const Wrapper = styled.section`
     letter-spacing: var(--primary-500);
     letter-spacing: var(--letter-spacing);
     margin-left: 0.25rem;
+  }
+  .form-label {
+    margin-top: 1.5rem;
+    margin-bottom: -0.5rem;
   }
 `;
 
