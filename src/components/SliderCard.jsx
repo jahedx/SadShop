@@ -1,10 +1,16 @@
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
 import Wrapper from "../assets/wrappers/SliderCard.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "./ProductCard.jsx";
 
 const SliderCard = ({ cardsList }) => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (productID) => {
+    navigate(`/product/${productID}`);
+  };
   const settings = {
     infinite: true,
     speed: 500,
@@ -47,7 +53,11 @@ const SliderCard = ({ cardsList }) => {
           {cardsList.map((card) => {
             return (
               <div className="card" key={card.id}>
-                <ProductCard {...card} key={card.id} />
+                <ProductCard
+                  {...card}
+                  key={card.id}
+                  navigator={() => handleProductClick(card.id)}
+                />
               </div>
             );
           })}

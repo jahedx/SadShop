@@ -1,16 +1,25 @@
 import Wrapper from "../assets/wrappers/ProductCard.js";
 import ToomanIcon from "./ToomanIcon";
 
-
 /* eslint-disable react/prop-types */
 const ProductCard = (props) => {
-  const { img, name, sellingPrice, offPercent, realPrice, isAvailable } = props;
+  const {
+    img,
+    name,
+    sellingPrice,
+    offPercent,
+    realPrice,
+    isAvailable,
+    navigator,
+  } = props;
   return (
     <Wrapper>
       <div className="card">
         <div className="image-container">
           <img src={img} alt="" className="card-img" />
-          <p className="product-name">{name}</p>
+          <div onClick={navigator}>
+            <p className="product-name">{name}</p>
+          </div>
         </div>
         {isAvailable ? (
           <div className="pricing">

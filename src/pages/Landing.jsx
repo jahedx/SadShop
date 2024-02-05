@@ -44,8 +44,11 @@ const LandingPage = () => {
           <div className="cards-container">
             {cards.map((card) => {
               return (
-                <div key={card.id} onClick={() => handleProductClick(card.id)}>
-                  <ProductCard {...card} />
+                <div key={card.id}>
+                  <ProductCard
+                    {...card}
+                    navigator={() => handleProductClick(card.id)}
+                  />
                 </div>
               );
             })}
