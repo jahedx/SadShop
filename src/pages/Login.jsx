@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const handleLogin = await post("api/login", {
+      const handleLogin = await post("accounts/login/", {
         email: username,
         password: password,
       });
@@ -40,7 +40,10 @@ const Login = () => {
     <Wrapper>
       <form className="form" onSubmit={loginHandler}>
         <Logo />
-        <h4>Login</h4>
+        <h4>ورود</h4>
+        <label className="form-label" htmlFor="userName">
+          نام کاربری
+        </label>
         <input
           onChange={(e) => {
             setUsername(e.target.value);
@@ -49,9 +52,13 @@ const Login = () => {
           id="userName"
           name="userName"
           className="form-input"
+          placeholder="نام کاربری"
           defaultValue=""
           required
         />
+        <label className="form-label" htmlFor="password">
+          رمزعبور
+        </label>
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
@@ -59,16 +66,17 @@ const Login = () => {
           name="passWord"
           className="form-input"
           defaultValue=""
+          placeholder="رمز عبور"
           required
         />
 
         <button type="submit" className="btn btn-block">
-          login
+          ورود
         </button>
         <p>
-          not a member?
+          عضو نیستید؟
           <Link to="/Register" className="member-btn">
-            Register
+            ثبت نام
           </Link>
         </p>
       </form>

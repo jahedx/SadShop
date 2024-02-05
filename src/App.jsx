@@ -11,6 +11,7 @@ import {
   Login,
   Profile,
   Register,
+  EditDetails,
   Test,
 } from "./pages";
 import SingleProduct from "./pages/SingleProduct.jsx";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "/profile/editdetails",
+        element: <EditDetails />,
+      },
+      {
         path: "/cart",
         element: <Cart />,
       },
@@ -54,7 +59,7 @@ const router = createBrowserRouter([
         element: <Test />,
       },
       {
-        path: "/product",
+        path: "/product/:productID",
         element: <SingleProduct />,
       },
     ],

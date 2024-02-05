@@ -122,11 +122,19 @@ const Wrapper = styled.nav`
     color: black;
   }
 
+  .bars:hover {
+    cursor: pointer;
+  }
+  .bars {
+    background: transparent;
+    border: none;
+  }
+
   .dropdown {
     width: 90vw;
     background: white;
-    display: none;
-    position: absolute;
+    /* display: none; */
+    /* position: ; */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: right;
     border-radius: var(--border-radius);
@@ -160,6 +168,12 @@ const Wrapper = styled.nav`
   }
 
   @media (min-width: 992px) {
+    .dropdown {
+      display: none;
+    }
+    .bars {
+      display: none;
+    }
     header {
       grid-template-columns: 1fr 1fr;
       max-width: 80vw;

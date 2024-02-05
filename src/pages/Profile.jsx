@@ -7,11 +7,17 @@ import {
   MdOutlineLocationOn,
   MdLogout,
 } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 function Profile() {
+  // useEffect(() => {
+  //   if (!localStorage.getItem("user")) {
+  //     navigate("/login");
+  //   }
+  // });
+
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const { defaultUser, setDefaultUser } = useGlobalContext();
@@ -91,7 +97,7 @@ function Profile() {
                 </div>
               </div>
               <div className="edit-btn">
-                <Link className="edit-icon">
+                <Link to={"./editdetails"} className="edit-icon">
                   <FaEdit />
                 </Link>
               </div>
@@ -131,20 +137,6 @@ function Profile() {
                     سفارش ها
                     <span>
                       <FaShoppingCart />
-                    </span>
-                  </h4>
-                </div>
-              </button>
-              <button
-                onClick={() => {
-                  setPage("comments");
-                }}
-              >
-                <div className={page === "comments" ? "selected-page" : " "}>
-                  <h4>
-                    نظرات
-                    <span>
-                      <MdOutlineInsertComment />
                     </span>
                   </h4>
                 </div>

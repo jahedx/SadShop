@@ -1,9 +1,11 @@
+import { Link, useParams } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Wrapper from "../assets/wrappers/SingleProduct";
 import { details } from "../data/Data.jsx";
 import ToomanIcon from "./../components/ToomanIcon";
+import { data } from "../data/Data.jsx";
 
 const settings = {
   dots: true,
@@ -23,6 +25,9 @@ const Carousel = () => (
   </Slider>
 );
 const SingleProduct = () => {
+  const { productID } = useParams();
+  console.log(productID);
+
   return (
     <Wrapper>
       <div className="page">

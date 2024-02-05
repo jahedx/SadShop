@@ -6,21 +6,27 @@ import { useState } from "react";
 const Register = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
-  const [phonenuNmber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
 
   async function registerHandler(e) {
     e.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const handleLogin = await post("accounts/register", {
+      const handleRegister = await post("accounts/customer_register/", {
         username: username,
         password: password,
-        phonenuNmber: phonenuNmber,
+        password2: password2,
+        email: email,
+        phoneNumber: phoneNumber,
+        city: city,
       });
-      console.log("Get response: ", handleLogin);
+      console.log("Get response: ", handleRegister);
 
-      localStorage.setItem("user", JSON.stringify(handleLogin));
+      localStorage.setItem("user", JSON.stringify(handleRegister));
       navigate("/profile");
 
       // Additional logic (e.g., storing data in localStorage) can go here
@@ -35,10 +41,10 @@ const Register = () => {
     <Wrapper>
       <form className="form" onSubmit={registerHandler}>
         <Logo />
-        <h4>Register</h4>
+        <h4>ثبت نام</h4>
 
         <label htmlFor="userName" className="form-label">
-          username
+          نام کاربری
         </label>
         <input
           onChange={(e) => {
@@ -49,12 +55,12 @@ const Register = () => {
           name="userName"
           className="form-input"
           defaultValue=""
-          placeholder="Username"
+          placeholder="نام کاربری"
           required
         />
 
         <label htmlFor="phoneNumber" className="form-label">
-          Phone Number
+          شماره تلفن
         </label>
         <input
           onChange={(e) => {
@@ -65,12 +71,12 @@ const Register = () => {
           name="phoneNumber"
           className="form-input"
           defaultValue=""
-          placeholder="Phone Number"
+          placeholder="شماره تلفن"
           required
         />
 
         <label htmlFor="password" className="form-label">
-          password
+          رمزعبور
         </label>
         <input
           onChange={(e) => {
@@ -80,18 +86,63 @@ const Register = () => {
           id="password"
           name="password"
           className="form-input"
-          placeholder="Password"
+          placeholder="رمز عبور"
+          defaultValue=""
+          required
+        />
+        <label htmlFor="password2" className="form-label">
+          تکرار رمز
+        </label>
+        <input
+          onChange={(e) => {
+            setPassword2(e.target.value);
+          }}
+          type="password"
+          id="password2"
+          name="password2"
+          className="form-input"
+          placeholder="تکرار رمز"
+          defaultValue=""
+          required
+        />
+        <label htmlFor="email" className="form-label">
+          ایمیل
+        </label>
+        <input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          type="email"
+          id="email"
+          name="eamil"
+          className="form-input"
+          placeholder="ایمیل"
+          defaultValue=""
+          required
+        />
+        <label htmlFor="city" className="form-label">
+          شهر
+        </label>
+        <input
+          onChange={(e) => {
+            setCity(e.target.value);
+          }}
+          type="text"
+          id="city"
+          name="city"
+          className="form-input"
+          placeholder="شهر"
           defaultValue=""
           required
         />
 
         <button type="submit" className="btn btn-block">
-          submit
+          ثبت
         </button>
         <p>
-          already amember?
+          عضو هستید؟
           <Link to="/login" className="member-btn">
-            Login
+            وارد شوید
           </Link>
         </p>
       </form>

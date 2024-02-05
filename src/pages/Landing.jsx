@@ -1,4 +1,5 @@
 import "slick-carousel/slick/slick.css";
+import { useNavigate } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import Wrapper from "../assets/wrappers/LandingPage.js";
 import {
@@ -13,6 +14,12 @@ import { useEffect } from "react";
 import { get } from "../modules/axiosService.js";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (productID) => {
+    navigate(`/product/${productID}`);
+  };
+
   useEffect(() => async () => {
     try {
       const list1 = await get("/api/unknown");
@@ -36,7 +43,11 @@ const LandingPage = () => {
         <section className="laptop-suggest">
           <div className="cards-container">
             {cards.map((card) => {
-              return <ProductCard {...card} key={card.id} />;
+              return (
+                <div key={card.id} onClick={() => handleProductClick(card.id)}>
+                  <ProductCard {...card} />
+                </div>
+              );
             })}
           </div>
         </section>

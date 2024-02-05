@@ -1,4 +1,4 @@
-import Wrapper from "../assets/wrappers/Footer.jsx";
+import Wrapper from "../assets/wrappers/Footer";
 import Logo from "./Logo";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin, FaTwitter } from "react-icons/fa";

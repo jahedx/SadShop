@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-
 import {
   AiOutlineShoppingCart,
   AiOutlineQuestionCircle,
@@ -10,11 +9,13 @@ import {
 import { Link } from "react-router-dom";
 import Wrapper from "../assets/wrappers/Navbar";
 import Logo from "./Logo";
+import DropDown from "./DropDown.jsx";
 
 const Navbar = () => {
+  const [dropdown, setDropDown] = useState(false);
   return (
-    <Wrapper>
-      <React.Fragment>
+    <React.Fragment>
+      <Wrapper>
         <header>
           <div className="upper-header">
             <div className="search-box">
@@ -46,42 +47,15 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <ul className="category">
-              <li>
-                <Link to="" className="icon">
-                  <FaBars />
-                </Link>
-                <div className="dropdown">
-                  <ul>
-                    <li>
-                      <Link to="">کالای دیجیتال</Link>
-                    </li>
-                    <li>
-                      <Link to="">خانه و آشپزخانه</Link>
-                    </li>
-                    <li>
-                      <Link to="">خودرو، ابزار، باغبانی</Link>
-                    </li>
-                    <li>
-                      <Link to="">فرهنگ و هنر</Link>
-                    </li>
-                    <li>
-                      <Link to="">بهداشت شخصی و سلامت محیط</Link>
-                    </li>
-                    <li>
-                      <Link to="">اسباب بازی، کودک و نوزاد</Link>
-                    </li>
-                    <li>
-                      <Link to="">ورزش، سفر، کمپینگ</Link>
-                    </li>
-                    <li>
-                      <Link to="">طلا، مد و پوشاک</Link>
-                    </li>
-                    {/* Add more categories as needed */}
-                  </ul>
-                </div>
-              </li>
-            </ul>
+            <button
+              to=""
+              className="icon bars"
+              onClick={() => {
+                setDropDown(~dropdown);
+              }}
+            >
+              <FaBars />
+            </button>
           </div>
           <div className="big-category">
             <ul>
@@ -113,8 +87,10 @@ const Navbar = () => {
             </ul>
           </div>
         </header>
-      </React.Fragment>
-    </Wrapper>
+        <handleDropdown />
+      </Wrapper>
+      {dropdown ? <DropDown /> : ""}
+    </React.Fragment>
   );
 };
 

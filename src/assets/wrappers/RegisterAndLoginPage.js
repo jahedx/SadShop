@@ -33,17 +33,21 @@ const Wrapper = styled.section`
   }
 
   .btn {
+    font-family: "IRANYekan", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
     margin-top: 1rem;
     padding: 0.75rem;
   }
 
   .member-btn {
     color: var(--primary-500);
-    letter-spacing: var(--primary-500);
-    letter-spacing: var(--letter-spacing);
     margin-left: 0.25rem;
   }
   .form-label {
+    letter-spacing: normal;
+    text-align: right;
+    font-weight: 700;
     margin-top: 1.5rem;
     margin-bottom: -0.5rem;
   }
