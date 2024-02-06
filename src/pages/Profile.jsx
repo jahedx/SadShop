@@ -3,23 +3,23 @@ import MainAvatar from "../components/MainAvatar.jsx";
 import { FaEdit, FaShoppingCart, FaRegHeart, FaUser } from "react-icons/fa";
 import {
   MdSpaceDashboard,
-  MdOutlineInsertComment,
   MdOutlineLocationOn,
   MdLogout,
 } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import { get } from "../modules/axiosService.js";
 
 function Profile() {
-  // useEffect(() => {
-  //   if (!localStorage.getItem("user")) {
-  //     navigate("/login");
-  //   }
-  // });
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+  });
 
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const { defaultUser, setDefaultUser } = useGlobalContext();
   const [page, setPage] = useState("accountInfo");
 
@@ -54,14 +54,14 @@ function Profile() {
                   <label htmlFor="name" className="info-label">
                     نام
                   </label>
-                  <div className="user-information">{defaultUser.name}</div>
+                  <div className="user-information">{user.first_name}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="lastName" className="info-label">
                     نام خانوادگی
                   </label>
-                  <div className="user-information">{defaultUser.lastName}</div>
+                  <div className="user-information">{user.last_name}</div>
                   <br />
                 </div>
                 <div className="user-info">
@@ -84,7 +84,7 @@ function Profile() {
                   <label htmlFor="email" className="info-label">
                     ایمیل
                   </label>
-                  <div className="user-information">{defaultUser.email}</div>
+                  <div className="user-information">{user.email}</div>
                 </div>
 
                 <div className="user-info">
@@ -186,9 +186,16 @@ function Profile() {
               </button>
             </div>
             <button
-              onClick={() => {
+              onClick={async () => {
                 setDefaultUser(null);
+                setUser(null);
                 localStorage.removeItem("user");
+                try {
+                  const list1 = await get("/account/logout/");
+                  console.log("Get response: ", list1);
+                } catch (error) {
+                  console.error("Error while fetching data", error);
+                }
                 navigate("/login");
               }}
             >

@@ -5,10 +5,9 @@ import { useEffect, useState } from "react";
 import { post } from "../modules/axiosService.js";
 
 const Login = () => {
-  const navigate = useNavigate(); // Import useHistory from react-router-dom
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/profile");
@@ -16,24 +15,20 @@ const Login = () => {
   });
 
   async function loginHandler(e) {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
 
     try {
       const handleLogin = await post("accounts/login/", {
-        email: username,
+        username: username,
         password: password,
       });
       console.log("Get response: ", handleLogin);
 
       localStorage.setItem("user", JSON.stringify(handleLogin));
       navigate("/profile");
-
-      // Additional logic (e.g., storing data in localStorage) can go here
     } catch (error) {
       console.error("Error while fetching data", error);
     }
-
-    // console.log(login);
   }
 
   return (

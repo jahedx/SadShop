@@ -6,6 +6,7 @@ import Wrapper from "../assets/wrappers/SingleProduct";
 import { details } from "../data/Data.jsx";
 import ToomanIcon from "./../components/ToomanIcon";
 import { data } from "../data/Data.jsx";
+import { useEffect } from "react";
 
 const settings = {
   dots: true,
@@ -26,11 +27,25 @@ const Carousel = () => (
 );
 const SingleProduct = () => {
   const { productID } = useParams();
-  console.log(productID);
+  for (i = 0; i < data.length; i++) {
+    if (data[i].id == productID) {
+      console.log(data[i]);
+    }
+
+    var product;
+  }
+
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].id === productID) {
+      product = data[i];
+      console.log(product);
+    }
+  }
 
   return (
     <Wrapper>
       <div className="page">
+        {console.log(product)}
         <section className="main-erea">
           <div className="slider-center">
             <div className="images">
@@ -41,9 +56,7 @@ const SingleProduct = () => {
             <h4 dir="rtl">{details.title}</h4>
           </div>
           <div className="description">
-            <p>
-              <p dir="rtl">{details.description}</p>
-            </p>
+            <p dir="rtl">{details.description}</p>
           </div>
 
           <div className="add-to-cart ">

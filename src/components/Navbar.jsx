@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import {
@@ -12,6 +12,13 @@ import Logo from "./Logo";
 import DropDown from "./DropDown.jsx";
 
 const Navbar = () => {
+  const [checkUser, setheckUser] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setheckUser(true);
+    }
+  }, []);
+
   const [dropdown, setDropDown] = useState(false);
   return (
     <React.Fragment>
@@ -34,10 +41,15 @@ const Navbar = () => {
           </div>
           <div className="nav">
             <div className="nav-left-side">
-              <Link to={"./cart"} className="icon cart-link-icon">
-                <AiOutlineShoppingCart />
-              </Link>
-              <span>|</span>
+              {checkUser ? (
+                <Link to={"./cart"} className="icon cart-link-icon">
+                  <AiOutlineShoppingCart />
+                  <span>|</span>
+                </Link>
+              ) : (
+                ""
+              )}
+
               <Link to={"/login"} className="link">
                 <CgProfile />
               </Link>
@@ -87,7 +99,6 @@ const Navbar = () => {
             </ul>
           </div>
         </header>
-        <handleDropdown />
       </Wrapper>
       {dropdown ? <DropDown /> : ""}
     </React.Fragment>
