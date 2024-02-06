@@ -54,30 +54,28 @@ function Profile() {
                   <label htmlFor="name" className="info-label">
                     نام
                   </label>
-                  <div className="user-information">{user.first_name}</div>
+                  <div className="user-information">{user.name}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="lastName" className="info-label">
                     نام خانوادگی
                   </label>
-                  <div className="user-information">{user.last_name}</div>
+                  <div className="user-information">{user.lastName}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="bDate" className="info-label">
                     تاریخ تولد
                   </label>
-                  <div className="user-information">{defaultUser.bDate}</div>
+                  <div className="user-information">{user.bDate}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="phone" className="info-label">
                     شماره تماس
                   </label>
-                  <div className="user-information">
-                    {defaultUser.phoneNumber}
-                  </div>
+                  <div className="user-information">{user.phoneNumber}</div>
                   <br />
                 </div>
                 <div className="user-info">
@@ -91,9 +89,7 @@ function Profile() {
                   <label htmlFor="nationalID" className="info-label">
                     کد ملی
                   </label>
-                  <div className="user-information">
-                    {defaultUser.nationalID}
-                  </div>
+                  <div className="user-information">{user.nationalID}</div>
                 </div>
               </div>
               <div className="edit-btn">
@@ -107,7 +103,7 @@ function Profile() {
         {page !== "accountInfo" && (
           <div className="section">
             {page === "addresses" &&
-              defaultUser.addresses.map((address) => {
+              user.addresses.map((address) => {
                 return addresses(address);
               })}
           </div>
@@ -190,12 +186,12 @@ function Profile() {
                 setDefaultUser(null);
                 setUser(null);
                 localStorage.removeItem("user");
-                try {
-                  const list1 = await get("/account/logout/");
-                  console.log("Get response: ", list1);
-                } catch (error) {
-                  console.error("Error while fetching data", error);
-                }
+                // try {
+                //   const logout = await get("/account/logout/");
+                //   console.log("Get response: ", logout);
+                // } catch (error) {
+                //   console.error("Error while fetching data", error);
+                // }
                 navigate("/login");
               }}
             >
