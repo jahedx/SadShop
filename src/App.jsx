@@ -2,17 +2,16 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   HomeLayout,
   About,
-  AdminPage,
   Cart,
   Error,
   Help,
   Landing,
-  Product,
   Login,
   Profile,
   Register,
   EditDetails,
   Test,
+  SearchResult,
 } from "./pages";
 import SingleProduct from "./pages/SingleProduct.jsx";
 
@@ -57,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/test",
         element: <Test />,
+      },
+      {
+        path: "/search",
+        element: <SearchResult />,
       },
       {
         path: "/product/:productID",

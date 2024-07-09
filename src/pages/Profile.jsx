@@ -1,14 +1,9 @@
 import Wrapper from "../assets/wrappers/Profile.js";
 import MainAvatar from "../components/MainAvatar.jsx";
 import { FaEdit, FaShoppingCart, FaRegHeart, FaUser } from "react-icons/fa";
-import {
-  MdSpaceDashboard,
-  MdOutlineLocationOn,
-  MdLogout,
-} from "react-icons/md";
+import { MdSpaceDashboard, MdLogout } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../context";
 import { get } from "../modules/axiosService.js";
 
 function Profile() {
@@ -20,10 +15,10 @@ function Profile() {
 
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const { defaultUser, setDefaultUser } = useGlobalContext();
   const [page, setPage] = useState("accountInfo");
 
   const addresses = (props) => {
+    // eslint-disable-next-line react/prop-types
     const { address, city, postCode, phone, name } = props;
     return (
       <section className="addresses" key={address}>
@@ -54,28 +49,21 @@ function Profile() {
                   <label htmlFor="name" className="info-label">
                     نام
                   </label>
-                  <div className="user-information">{user.name}</div>
+                  <div className="user-information">{user.first_name}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="lastName" className="info-label">
                     نام خانوادگی
                   </label>
-                  <div className="user-information">{user.lastName}</div>
-                  <br />
-                </div>
-                <div className="user-info">
-                  <label htmlFor="bDate" className="info-label">
-                    تاریخ تولد
-                  </label>
-                  <div className="user-information">{user.bDate}</div>
+                  <div className="user-information">{user.last_name}</div>
                   <br />
                 </div>
                 <div className="user-info">
                   <label htmlFor="phone" className="info-label">
                     شماره تماس
                   </label>
-                  <div className="user-information">{user.phoneNumber}</div>
+                  <div className="user-information">{user.phone_number}</div>
                   <br />
                 </div>
                 <div className="user-info">
@@ -87,9 +75,9 @@ function Profile() {
 
                 <div className="user-info">
                   <label htmlFor="nationalID" className="info-label">
-                    کد ملی
+                    شهر
                   </label>
-                  <div className="user-information">{user.nationalID}</div>
+                  <div className="user-information">{user.city}</div>
                 </div>
               </div>
               <div className="edit-btn">
@@ -137,20 +125,22 @@ function Profile() {
                   </h4>
                 </div>
               </button>
-              <button
-                onClick={() => {
-                  setPage("addresses");
-                }}
-              >
-                <div className={page === "addresses" ? "selected-page" : " "}>
-                  <h4>
-                    آدرس ها
-                    <span>
-                      <MdOutlineLocationOn />
-                    </span>
-                  </h4>
-                </div>
-              </button>
+              {
+                // <button
+                // onClick={() => {
+                //   setPage("addresses");
+                // }}
+                // >
+                // <div className={page === "addresses" ? "selected-page" : " "}>
+                // <h4>
+                // آدرس ها
+                // <span>
+                // <MdOutlineLocationOn />
+                // </span>
+                // </h4>
+                // </div>
+                // </button>
+              }
               <button
                 onClick={() => {
                   setPage("favorites");
@@ -183,15 +173,14 @@ function Profile() {
             </div>
             <button
               onClick={async () => {
-                setDefaultUser(null);
                 setUser(null);
                 localStorage.removeItem("user");
-                // try {
-                //   const logout = await get("/account/logout/");
-                //   console.log("Get response: ", logout);
-                // } catch (error) {
-                //   console.error("Error while fetching data", error);
-                // }
+                try {
+                  const logout = await get("/account/logout/");
+                  console.log("Get response: ", logout);
+                } catch (error) {
+                  console.error("Error while fetching data", error);
+                }
                 navigate("/login");
               }}
             >

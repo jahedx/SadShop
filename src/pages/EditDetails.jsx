@@ -7,7 +7,6 @@ const EditDetails = () => {
   const [first_name, setname] = useState("");
   const [last_name, setlastName] = useState("");
   const [email, setEmail] = useState("");
-  const [nationalID, setNationalID] = useState("");
   const [city, setCity] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,9 +14,8 @@ const EditDetails = () => {
 
   async function handleEdit(e) {
     e.preventDefault();
-
     try {
-      const userEdit = await get("accounts/login/", {
+      const userEdit = await get("accounts/edit_user/", {
         username: username,
         password: password,
         first_name: first_name,

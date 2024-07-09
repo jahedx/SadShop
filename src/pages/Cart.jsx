@@ -1,9 +1,21 @@
 import SingleItem from "../components/CartSingleItem.jsx";
 import Wrapper from "../assets/wrappers/Cart.js";
 import { useGlobalContext } from "../context.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { get } from "../modules/axiosService.js";
 
 const Cart = () => {
+  useEffect(
+    () => async () => {
+      try {
+        const result = await get("/api/unknown");
+        console.log("Get response: ", result);
+      } catch (error) {
+        console.error("Error while fetching data", error);
+      }
+    },
+    []
+  );
   const { defaultCart, setDefaultCart } = useGlobalContext();
 
   const cartTotal = defaultCart.reduce((total, item) => {
@@ -24,18 +36,8 @@ const Cart = () => {
         </section>
 
         <section className="check-out">
-          <span>قیمت کالا ها</span>
-          <span>جمع سبد خرید {total} </span>
-          <span>سود خرید</span>
           <button className="btn order-btn">تایید و تکمیل سفارش</button>
         </section>
-        <button
-          onClick={() => {
-            console.log(defaultCart);
-          }}
-        >
-          check value
-        </button>
       </div>
     </Wrapper>
   );
